@@ -1,8 +1,10 @@
 # ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 1: Standardized Testing, Statistical Summaries and Inference
 
+
 ## Problem Statement
 
 The new format for the SAT was released in March 2016. With this new test format, **how can College Board improve the statewide participation rates for the SAT, as compared to the ACT?**
+
 
 ## Executive Summary
 
@@ -15,6 +17,7 @@ In this project, I utilize the following skillsets:
 - Data Visualization with Matplotlib & Seaborn
 - Basic Statistics (Distributions, Hypothesis Testing, etc.)
 
+
 ## Datasets Used
 
 The following datasets were provided in the form of CSV files for this project:
@@ -26,12 +29,13 @@ The following datasets were provided in the form of CSV files for this project:
 
 These datasets give the average SAT and ACT scores by state, as well as participation rates, for the graduating class of 2017 and 2018.
 
-These datasets were sourced from the following sources:
+The datasets were sourced from the following sources:
 
 - [2017 SAT Scores](https://blog.collegevine.com/here-are-the-average-sat-scores-by-state/)
 - [2017 ACT Scores](https://www.act.org/content/dam/act/unsecured/documents/cccr2017/ACT_2017-Average_Scores_by_State.pdf)
 - [2018 SAT Scores](https://reports.collegeboard.org/sat-suite-program-results/state-results)
 - [2018 ACT Scores](http://www.act.org/content/dam/act/unsecured/documents/cccr2018/Average-Scores-by-State.pdf)
+
 
 ## Data Dictionary
 
@@ -58,7 +62,7 @@ These datasets were sourced from the following sources:
 |**act18_reading**|float|ACT 2018|Average scaled scores for the 2018 ACT Reading section (with one decimal place, in a range of 1 - 36 (inclusive)).|
 |**act18_science**|float|ACT 2018|Average scaled scores for the 2018 ACT Science section (with one decimal place, in a range of 1 - 36 (inclusive)).|
 |**act18_composite**|float|ACT 2018|Average scaled composite scores for the 2018 ACT (with one decimal place, in a range of 1 - 36 (inclusive)). In ACT, the *individual* composite scores are calculated by averaging the four sections' scores.|
-|---|---|---|---|
+
 
 ## Conclusions and Recommendations
 
