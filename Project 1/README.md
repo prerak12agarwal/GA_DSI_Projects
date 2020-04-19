@@ -36,6 +36,7 @@ These datasets were sourced from the following sources:
 ## Data Dictionary
 
 |Feature|Type|Dataset|Description|
+|---|---|---|---|
 |**states**|object|SAT 2017, ACT 2017, SAT 2018 & ACT 2018|The states (50) and federal districts (1) of the USA.|
 |**sat17_participation**|float|SAT 2017|The percentage of students from the graduating class of 2017 who took the 2017 SAT (units percent, where 0.02 represents 2%).|
 |**sat17_ebrw**|int|SAT 2017|Average scaled scores for the 2017 SAT Evidence-Based Reading and Writing (EBRW) section (without decimal places, in a range of 200 - 800 (inclusive)).|
