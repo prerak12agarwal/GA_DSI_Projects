@@ -1,177 +1,148 @@
-# Project 2 - Ames Housing Data and Kaggle Challenge
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 2: Ames Housing Data Analysis and Modelling
 
-Welcome to Project 2! It's time to start modeling.
 
-**Primary Learning Objectives:**
-1. Creating and iteratively refining a regression model
-2. Using [Kaggle](https://www.kaggle.com/) to practice the modeling process
-3. Providing business insights through reporting and presentation.
+## Problem Statement
 
-You are tasked with creating a regression model based on the Ames Housing Dataset. This model will predict the price of a house at sale.
+Using the information in the Ames Housing Dataset, is it possible to **predict the housing sale prices for houses in Ames, IA, USA (by employing different Machine Learning techniques)**? If yes, **how accurately can these housing sale prices be predicted?**
 
-The Ames Housing Dataset is an exceptionally detailed and robust dataset with over 70 columns of different features relating to houses.
 
-Secondly, we are hosting a competition on Kaggle to give you the opportunity to practice the following skills:
+## Executive Summary
 
-- Refining models over time
-- Use of train-test split, cross-validation, and data with unknown values for the target to simulate the modeling process
-- The use of Kaggle as a place to practice data science
+According to this [page](https://nycdatascience.com/blog/student-works/machine-learning/machine-learning-project-ames-housing-dataset/), the Ames Housing Dataset contains observations of housing sales in Ames, Iowa, USA between 2006 and 2010. There are 23 nominal, 23 ordinal, 14 discrete, and 20 continuous features describing each house's size, quality, area, age, and other miscellaneous attributes. In this project, **I seek to apply different machine learning techniques to predict the sale price of houses based on their features**.
 
-As always, you will be submitting a technical report and a presentation. **You may find that the best model for Kaggle is not the best model to address your data science problem.**
+For ease of organization and understanding, the project has been **divided into 3 separate Jupyter notebooks**. The first 2 notebooks each focus on getting the datasets ready for application of machine learning techniques later on. This involves data cleaning, converting ordinal variables to numerical scales & one-hot encoding the nominal variables. The third notebook then focuses on EDA, different methods of feature selection, modelling and evaluation.
 
-## Set-up
+In order to predict the housing sale prices, I employ different methods of feature selection and machine learning techniques. Some of the techniques/models employed in this project are:
+- Multiple Linear Regression
+- Regularization (Lasso, Ridge & ElasticNet)
+- Recursive Feature Elimination with Cross-Validation (RFECV)
+- Grid Search with Cross-Validation (GridSearchCV)
+- Sequential Feature Selector
 
-Before you begin working on this project, please do the following:
+Each of the models built are evaluated using metrics such as **R^2 score, Mean Squared Error (MSE) and Root Mean Squared Error (RMSE)** to explain how well the models may generalize to new data.
 
-1. Sign up for an account on [Kaggle](https://www.kaggle.com/)
-2. **IMPORTANT**: Click this link ([Regression Challenge Sign Up](https://www.kaggle.com/t/cf68f4a276f44b59a3c6c843dbf9ed1e)) to **join** the competition (otherwise you will not be able to make submissions!)
-3. Review the material on the [DSI-US-6 Regression Challenge](https://www.kaggle.com/c/dsi-us-6-project-2-regression-challenge)
-4. Review the [data description](http://jse.amstat.org/v19n3/decock/DataDocumentation.txt).
+The predictions of housing sale prices from these models may be very relevant in the real world. For instance, these predictions may be used by home owners, buyers, sellers and realtors to gauge how much a house may be worth given it's characteristics (features). The predictions may also be used by the local government for tax assessment purposes or by financial institutions to determine the loan and mortgage rates. Although the predictions modelled in this project may be localized to the city of Ames, they may be applied to other cities (with caution) to understand the differences, before refining the models for such cities.
 
-## The Modeling Process
 
-1. The train dataset has all of the columns that you will need to generate and refine your models. The test dataset has all of those columns except for the target that you are trying to predict in your Regression model.
-2. Generate your regression model using the training data. We expect that within this process, you'll be making use of:
-    - train-test split
-    - cross-validation / grid searching for hyperparameters
-    - strong exploratory data analysis to question correlation and relationship across predictive variables
-    - code that reproducibly and consistently applies feature transformation (such as the preprocessing library)
-3. Predict the values for your target column in the test dataset and submit your predictions to Kaggle to see how your model does against unknown data.
-    - **Note**: Kaggle expects to see your submissions in a specific format. Check the challenge's page to make sure you are formatting your CSVs correctly!
-    - **You are limited to models you've learned in class**. In other words, you cannot use XGBoost, Neural Networks or any other advanced model for this project.
-4. Evaluate your models!
-    - consider your evaluation metrics
-    - consider your baseline score
-    - how can your model be used for inference?
-    - why do you believe your model will generalize to new data?
+## Datasets Used
 
-## Submission
+The following datasets were provided in the form of CSV files for this project:
 
-**Materials must be submitted by the beginning of class on May 4th.**
+- [Training dataset](./datasets/train.csv)
+- [Testing dataset](./datasets/test.csv)
 
-Your technical report will be hosted on Github Enterprise. Make sure it includes:
+The training dataset has all the columns needed to generate and refine machine learning models. The testing dataset also has all of those columns except for the target variable (*SalePrice*) that is to be predicted using regression models.
 
-- A README.md (that isn't this file)
-- Jupyter notebook(s) with your analysis and models (renamed to describe your project)
-- At least one successful prediction submission on [DSI-US-6 Regression Challenge](https://www.kaggle.com/c/dsi-us-6-project-2-regression-challenge) --  you should see your name in the "[Leaderboard](https://www.kaggle.com/c/dsi-us-6-project-2-regression-challenge/leaderboard)" tab.
-- Data files
-- Presentation slides
-- Any other necessary files (images, etc.)
+The datasets were sourced from the following source: [Kaggle challenge](https://www.kaggle.com/c/dsi-us-6-project-2-regression-challenge/data)
 
-**Check with your local instructor for how they would like you to submit your repo for review.**
 
----
+## Data Dictionary
 
-## Presentation Structure
+The data dictionary for this dataset can be found [here](http://jse.amstat.org/v19n3/decock/DataDocumentation.txt)
 
-- **Must be within time limit established by local instructor.**
-- Use Google Slides or some other visual aid (Keynote, Powerpoint, etc).
-- Consider the audience. **Check with your local instructor for direction**.
-- Start with the **data science problem**.
-- Use visuals that are appropriately scaled and interpretable.
-- Talk about your procedure/methodology (high level).
-- Talk about your primary findings.
-- Make sure you provide **clear recommendations** that follow logically from your analyses and narrative and answer your data science problem.
+|Column name    |Variable type|Col dtype (initial)|Col dtype (converted to)|Col dtype (final)|Needs one-hot encoding|Possible unique values|Unique values in train|Rows of missing data|Description                                                                                                                                                     |
+|---------------|-------------|-------------------|------------------------|-----------------|----------------------|----------------------|----------------------|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|Id             |discrete     |float              |                        |float            |no                    |                      |                      |0                   |Observation number.                                                                                                                                             |
+|PID            |nominal      |float              |                        |float            |no                    |                      |                      |0                   |Parcel identification number.                                                                                                                                   |
+|MS SubClass    |nominal      |float              |                        |float            |yes                   |16                    |16                    |0                   |Identifies the type of dwelling involved in the sale.                                                                                                           |
+|MS Zoning      |nominal      |object             |                        |object           |yes                   |8                     |7                     |0                   |Identifies the general zoning classification of the sale.                                                                                                       |
+|Lot Frontage   |continuous   |float              |                        |float            |no                    |                      |                      |330                 |Linear feet of street connected to property.                                                                                                                    |
+|Lot Area       |continuous   |float              |                        |float            |no                    |                      |                      |0                   |Lot size in square feet.                                                                                                                                        |
+|Street         |nominal      |object             |                        |object           |yes                   |2                     |2                     |0                   |Type of road access to property.                                                                                                                                |
+|Alley          |nominal      |object             |                        |object           |yes                   |3                     |3                     |0                   |Type of alley access to property.                                                                                                                               |
+|Lot Shape      |ordinal      |object             |float                   |float            |no                    |4                     |4                     |0                   |General shape of property. 'Reg' = 4, 'IR1' = 3, 'IR2' = 2, 'IR3' = 1.                                                                                          |
+|Land Contour   |nominal      |object             |                        |object           |yes                   |4                     |4                     |0                   |Flatness of the property.                                                                                                                                       |
+|Utilities      |ordinal      |object             |float                   |float            |no                    |4                     |3                     |0                   |Type of utilities available. 'AllPub' = 4, 'NoSewr' = 3, 'NoSeWa' = 2, 'ELO' = 1.                                                                               |
+|Lot Config     |nominal      |object             |                        |object           |yes                   |5                     |5                     |0                   |Lot configuration.                                                                                                                                              |
+|Land Slope     |ordinal      |object             |float                   |float            |no                    |3                     |3                     |0                   |Slope of property. 'Gtl' = 3, 'Mod' = 2, 'Sev' = 1.                                                                                                             |
+|Neighborhood   |nominal      |object             |                        |object           |yes                   |28                    |28                    |0                   |Physical locations within Ames city limits (map available).                                                                                                     |
+|Condition 1    |nominal      |object             |                        |object           |yes                   |9                     |9                     |0                   |Proximity to various conditions.                                                                                                                                |
+|Condition 2    |nominal      |object             |                        |object           |yes                   |9                     |8                     |0                   |Proximity to various conditions (if more than one is present).                                                                                                  |
+|Bldg Type      |nominal      |object             |                        |object           |yes                   |5                     |5                     |0                   |Type of dwelling.                                                                                                                                               |
+|House Style    |nominal      |object             |                        |object           |yes                   |8                     |8                     |0                   |Style of dwelling.                                                                                                                                              |
+|Overall Qual   |ordinal      |float              |                        |float            |no                    |                      |                      |0                   |Rates the overall material and finish of the house.                                                                                                             |
+|Overall Cond   |ordinal      |float              |                        |float            |no                    |                      |                      |0                   |Rates the overall condition of the house.                                                                                                                       |
+|Year Built     |discrete     |float              |                        |float            |no                    |                      |                      |0                   |Original construction date.                                                                                                                                     |
+|Year Remod/Add |discrete     |float              |                        |float            |no                    |                      |                      |0                   |Remodel date (same as construction date if no remodeling or additions).                                                                                         |
+|Roof Style     |nominal      |object             |                        |object           |yes                   |6                     |6                     |0                   |Type of roof.                                                                                                                                                   |
+|Roof Matl      |nominal      |object             |                        |object           |yes                   |8                     |6                     |0                   |Roof material.                                                                                                                                                  |
+|Exterior 1st   |nominal      |object             |                        |object           |yes                   |17                    |15                    |0                   |Exterior covering on house.                                                                                                                                     |
+|Exterior 2nd   |nominal      |object             |                        |object           |yes                   |17                    |15                    |0                   |Exterior covering on house (if more than one material).                                                                                                         |
+|Mas Vnr Type   |nominal      |object             |                        |object           |yes                   |5                     |4                     |22                  |Masonry veneer type.                                                                                                                                            |
+|Mas Vnr Area   |continuous   |float              |                        |float            |no                    |                      |                      |22                  |Masonry veneer area in square feet.                                                                                                                             |
+|Exter Qual     |ordinal      |object             |float                   |float            |no                    |5                     |4                     |0                   |Evaluates the quality of the material on the exterior. 'Ex' = 5, 'Gd' = 4, 'TA' = 3, 'Fa' = 2, 'Po' = 1.                                                        |
+|Exter Cond     |ordinal      |object             |float                   |float            |no                    |5                     |5                     |0                   |Evaluates the present condition of the material on the exterior. 'Ex' = 5, 'Gd' = 4, 'TA' = 3, 'Fa' = 2, 'Po' = 1.                                              |
+|Foundation     |nominal      |object             |                        |object           |yes                   |6                     |6                     |0                   |Type of foundation.                                                                                                                                             |
+|Bsmt Qual      |ordinal      |object             |float                   |float            |no                    |6                     |6                     |1                   |Evaluates the height of the basement. 'Ex' = 5, 'Gd' = 4, 'TA' = 3, 'Fa' = 2, 'Po' = 1, 'NA' = 0.                                                               |
+|Bsmt Cond      |ordinal      |object             |float                   |float            |no                    |6                     |6                     |1                   |Evaluates the general condition of the basement. 'Ex' = 5, 'Gd' = 4, 'TA' = 3, 'Fa' = 2, 'Po' = 1, 'NA' = 0.                                                    |
+|Bsmt Exposure  |ordinal      |object             |float                   |float            |no                    |5                     |5                     |4                   |Refers to walkout or garden level walls. 'Gd' = 4, 'Av' = 3, 'Mn' = 2, 'No' = 1, 'NA' = 0.                                                                      |
+|BsmtFin Type 1 |ordinal      |object             |float                   |float            |no                    |7                     |7                     |1                   |Rating of basement finished area. 'GLQ' = 6, 'ALQ' = 5, 'BLQ' = 4, 'Rec' = 3, 'LwQ' = 2, 'Unf' = 1, 'NA' = 0.                                                   |
+|BsmtFin SF 1   |continuous   |float              |                        |float            |no                    |                      |                      |1                   |Type 1 finished square feet.                                                                                                                                    |
+|BsmtFin Type 2 |ordinal      |object             |float                   |float            |no                    |7                     |7                     |2                   |Rating of basement finished area (if multiple types). 'GLQ' = 6, 'ALQ' = 5, 'BLQ' = 4, 'Rec' = 3, 'LwQ' = 2, 'Unf' = 1, 'NA' = 0.                               |
+|BsmtFin SF 2   |continuous   |float              |                        |float            |no                    |                      |                      |1                   |Type 2 finished square feet.                                                                                                                                    |
+|Bsmt Unf SF    |continuous   |float              |                        |float            |no                    |                      |                      |1                   |Unfinished square feet of basement area.                                                                                                                        |
+|Total Bsmt SF  |continuous   |float              |                        |float            |no                    |                      |                      |1                   |Total square feet of basement area.                                                                                                                             |
+|Heating        |nominal      |object             |                        |object           |yes                   |6                     |5                     |0                   |Type of heating.                                                                                                                                                |
+|Heating QC     |ordinal      |object             |float                   |float            |no                    |5                     |5                     |0                   |Heating quality and condition. 'Ex' = 5, 'Gd' = 4, 'TA' = 3, 'Fa' = 2, 'Po' = 1.                                                                                |
+|Central Air    |nominal      |object             |float                   |float            |no                    |2                     |2                     |0                   |Central air conditioning. 'Y' = 1, 'N' = 0.                                                                                                                     |
+|Electrical     |ordinal      |object             |float                   |float            |no                    |5                     |5                     |0                   |Electrical system. 'SBrkr' = 5, 'FuseA' = 4, 'FuseF' = 3, 'FuseP' = 2, 'Mix' = 1.                                                                               |
+|1st Flr SF     |continuous   |float              |                        |float            |no                    |                      |                      |0                   |First Floor square feet.                                                                                                                                        |
+|2nd Flr SF     |continuous   |float              |                        |float            |no                    |                      |                      |0                   |Second floor square feet.                                                                                                                                       |
+|Low Qual Fin SF|continuous   |float              |                        |float            |no                    |                      |                      |0                   |Low quality finished square feet (all floors).                                                                                                                  |
+|Gr Liv Area    |continuous   |float              |                        |float            |no                    |                      |                      |0                   |Above grade (ground) living area square feet.                                                                                                                   |
+|Bsmt Full Bath |discrete     |float              |                        |float            |no                    |                      |                      |2                   |Basement full bathrooms.                                                                                                                                        |
+|Bsmt Half Bath |discrete     |float              |                        |float            |no                    |                      |                      |2                   |Basement half bathrooms.                                                                                                                                        |
+|Full Bath      |discrete     |float              |                        |float            |no                    |                      |                      |0                   |Full bathrooms above grade.                                                                                                                                     |
+|Half Bath      |discrete     |float              |                        |float            |no                    |                      |                      |0                   |Half baths above grade.                                                                                                                                         |
+|Bedroom AbvGr  |discrete     |float              |                        |float            |no                    |                      |                      |0                   |Bedrooms above grade (does NOT include basement bedrooms).                                                                                                      |
+|Kitchen AbvGr  |discrete     |float              |                        |float            |no                    |                      |                      |0                   |Kitchens above grade.                                                                                                                                           |
+|Kitchen Qual   |ordinal      |object             |float                   |float            |no                    |5                     |4                     |0                   |Kitchen quality. 'Ex' = 5, 'Gd' = 4, 'TA' = 3, 'Fa' = 2, 'Po' = 1.                                                                                              |
+|TotRms AbvGrd  |discrete     |float              |                        |float            |no                    |                      |                      |0                   |Total rooms above grade (does not include bathrooms).                                                                                                           |
+|Functional     |ordinal      |object             |float                   |float            |no                    |8                     |8                     |0                   |Home functionality (Assume typical unless deductions are warranted). 'Typ' = 8, 'Min1' = 7, 'Min2' = 6, 'Mod' = 5, 'Maj1' = 4, 'Maj2' = 3, 'Sev' = 2, 'Sal' = 1.|
+|Fireplaces     |discrete     |float              |                        |float            |no                    |                      |                      |0                   |Number of fireplaces.                                                                                                                                           |
+|Fireplace Qu   |ordinal      |object             |float                   |float            |no                    |6                     |6                     |0                   |Fireplace quality. 'Ex' = 5, 'Gd' = 4, 'TA' = 3, 'Fa' = 2, 'Po' = 1, 'NA' = 0.                                                                                  |
+|Garage Type    |nominal      |object             |                        |object           |yes                   |7                     |7                     |0                   |Garage location.                                                                                                                                                |
+|Garage Yr Blt  |discrete     |float              |                        |float            |no                    |                      |                      |114                 |Year garage was built.                                                                                                                                          |
+|Garage Finish  |ordinal      |object             |float                   |float            |no                    |4                     |4                     |1                   |Interior finish of the garage. 'Fin' = 3, 'RFn' = 2, 'Unf' = 1, 'NA' = 0.                                                                                       |
+|Garage Cars    |discrete     |float              |                        |float            |no                    |                      |                      |1                   |Size of garage in car capacity.                                                                                                                                 |
+|Garage Area    |continuous   |float              |                        |float            |no                    |                      |                      |1                   |Size of garage in square feet.                                                                                                                                  |
+|Garage Qual    |ordinal      |object             |float                   |float            |no                    |6                     |6                     |1                   |Garage quality. 'Ex' = 5, 'Gd' = 4, 'TA' = 3, 'Fa' = 2, 'Po' = 1, 'NA' = 0.                                                                                     |
+|Garage Cond    |ordinal      |object             |float                   |float            |no                    |6                     |6                     |1                   |Garage condition. 'Ex' = 5, 'Gd' = 4, 'TA' = 3, 'Fa' = 2, 'Po' = 1, 'NA' = 0.                                                                                   |
+|Paved Drive    |ordinal      |object             |float                   |float            |no                    |3                     |3                     |0                   |Paved driveway. 'Y' = 3, 'P' = 2, 'N' = 1.                                                                                                                      |
+|Wood Deck SF   |continuous   |float              |                        |float            |no                    |                      |                      |0                   |Wood deck area in square feet.                                                                                                                                  |
+|Open Porch SF  |continuous   |float              |                        |float            |no                    |                      |                      |0                   |Open porch area in square feet.                                                                                                                                 |
+|Enclosed Porch |continuous   |float              |                        |float            |no                    |                      |                      |0                   |Enclosed porch area in square feet.                                                                                                                             |
+|3Ssn Porch     |continuous   |float              |                        |float            |no                    |                      |                      |0                   |Three season porch area in square feet.                                                                                                                         |
+|Screen Porch   |continuous   |float              |                        |float            |no                    |                      |                      |0                   |Screen porch area in square feet.                                                                                                                               |
+|Pool Area      |continuous   |float              |                        |float            |no                    |                      |                      |0                   |Pool area in square feet.                                                                                                                                       |
+|Pool QC        |ordinal      |object             |float                   |float            |no                    |5                     |5                     |0                   |Pool quality. 'Ex' = 4, 'Gd' = 3, 'TA' = 2, 'Fa' = 1, 'NA' = 0.                                                                                                 |
+|Fence          |ordinal      |object             |float                   |float            |no                    |5                     |5                     |0                   |Fence quality. 'GdPrv' = 4, 'MnPrv' = 3, 'GdWo' = 2, 'MnWw' = 1, 'NA' = 0.                                                                                      |
+|Misc Feature   |nominal      |object             |                        |object           |yes                   |6                     |6                     |0                   |Miscellaneous feature not covered in other categories.                                                                                                          |
+|Misc Val       |continuous   |float              |                        |float            |no                    |                      |                      |0                   |$Value of miscellaneous feature.                                                                                                                                |
+|Mo Sold        |discrete     |float              |                        |float            |no                    |                      |                      |0                   |Month Sold (MM).                                                                                                                                                |
+|Yr Sold        |discrete     |float              |                        |float            |no                    |                      |                      |0                   |Year Sold (YYYY).                                                                                                                                               |
+|Sale Type      |nominal      |object             |                        |object           |yes                   |10                    |9                     |0                   |Type of sale.                                                                                                                                                   |
+|SalePrice      |continuous   |float              |                        |float            |no                    |                      |                      |0                   |Sale price $$.                                                                                                                                                  |
 
-Be sure to rehearse and time your presentation before class.
 
----
+## Conclusions and Recommendations
 
-## Rubric
-Your local instructor will evaluate your project (for the most part) using the following criteria.  You should make sure that you consider and/or follow most if not all of the considerations/recommendations outlined below **while** working through your project.
+Beginning with the problem statement of predicting the housing sale prices for houses in Ames, IA, USA, this project started with the process of understanding the different variables in the given datasets. The data science process started with cleaning the datasets and one-hot encoding of all the nominal categorical variables, so that they can be utilized in the machine learning models later on.
 
-**Scores will be out of 27 points based on the 9 items in the rubric.** <br>
-*3 points per section*<br>
+The next stage of the process was EDA, which helped to provide an understanding of the variables in the dataset and the different correlations that existed between them. Before the EDA process, the dataset had >200 columns of variables. By looking at the different types of variables (continuous, discrete, ordinal & nominal) in detail, I was successfully able to **filter out a lot of the not-so-highly correlated variables (with respect to target variable *SalePrice*)**. I was also able to **filter out some of the outliers** that would have negatively affected the machine learning models by increasing their bias, and thus resulted in incorrect predictions of housing sale prices.
 
-| Score | Interpretation |
-| --- | --- |
-| **0** | *Project fails to meet the minimum requirements for this item.* |
-| **1** | *Project meets the minimum requirements for this item, but falls significantly short of portfolio-ready expectations.* |
-| **2** | *Project exceeds the minimum requirements for this item, but falls short of portfolio-ready expectations.* |
-| **3** | *Project meets or exceeds portfolio-ready expectations; demonstrates a thorough understanding of every outlined consideration.* |
+With a smaller and more manageable number of selected variables from the dataset, the next stage of feature selection, model building and evaluation was commenced. Models were built by employing different techniques of feature selection, and were evaluated using metrics such as R^2 score, Mean Squared Error (MSE) and Root Mean Squared Error (RMSE).
 
-### The Data Science Process
+Judging from the summary of the models and their evaluation metrics, it can be said that **all of the models built predict the housing sale prices relatively well**.
 
-**Problem Statement**
-- Is it clear what the student plans to do?
-- What type of model will be developed?
-- How will success be evaluated?
-- Is the scope of the project appropriate?
-- Is it clear who cares about this or why this is important to investigate?
-- Does the student consider the audience and the primary and secondary stakeholders?
+The estimated test R^2 scores and the actual test R^2 scores are generally in the range of 0.85-0.90 for all the models. This means that these **models explain 85-90% of the variability in the data, relative to a model with no predictors (put simply, just the mean of all *SalePrice* values, ie. baseline model)**. Furthermore, the standard deviation of these R^2 scores are not very high (across the k-folds of cross-validation), which implies that the models perform relatively consistently across the different folds of cross-validation.
 
-**Data Cleaning and EDA**
-- Are missing values imputed appropriately?
-- Are distributions examined and described?
-- Are outliers identified and addressed?
-- Are appropriate summary statistics provided?
-- Are steps taken during data cleaning and EDA framed appropriately?
-- Does the student address whether or not they are likely to be able to answer their problem statement with the provided data given what they've discovered during EDA?
+However, there may be a drawback to relying too heavily on the R^2 score values to judge the consistency of the models. By it's way of definition, **R^2 score does not decrease as more predictors are added into the model**. And since the above models are built with a relatively high number of predictors (~20-47), perhaps it would be better to not rely so heavily on the R^2 score. Instead, an **adjusted R^2 score** could be employed in such cases.
 
-**Preprocessing and Modeling**
-- Are categorical variables one-hot encoded?
-- Does the student investigate or manufacture features with linear relationships to the target?
-- Have the data been scaled appropriately?
-- Does the student properly split and/or sample the data for validation/training purposes?
-- Does the student utilize feature selection to remove noisy or multi-collinear features?
-- Does the student test and evaluate a variety of models to identify a production algorithm (**AT MINIMUM:** linear regression, lasso, and ridge)?
-- Does the student defend their choice of production model relevant to the data at hand and the problem?
-- Does the student explain how the model works and evaluate its performance successes/downfalls?
+The estimated test RMSE and the actual test RMSE values are generally in the range of 25,000-30,000. This means that **on average (approximately), the predicted *SalePrice* values are off from the actual *SalePrice* values by 25-30 thousand dollars**.
 
-**Evaluation and Conceptual Understanding**
-- Does the student accurately identify and explain the baseline score?
-- Does the student select and use metrics relevant to the problem objective?
-- Is more than one metric utilized in order to better assess performance?
-- Does the student interpret the results of their model for purposes of inference?
-- Is domain knowledge demonstrated when interpreting results?
-- Does the student provide appropriate interpretation with regards to descriptive and inferential statistics?
+It can also be seen that the values of the metrics calculated while training the model on k-folds of cross validation (*estimated test metrics*) actually improve when the model is used to predict values on the test dataset (*actual test metrics*). This implies that **the models designed in this project would mostly generalize well on new unseen data**.
 
-**Conclusion and Recommendations**
-- Does the student provide appropriate context to connect individual steps back to the overall project?
-- Is it clear how the final recommendations were reached?
-- Are the conclusions/recommendations clearly stated?
-- Does the conclusion answer the original problem statement?
-- Does the student address how findings of this research can be applied for the benefit of stakeholders?
-- Are future steps to move the project forward identified?
+So, to answer the problem statement, **the models designed in this project can be used to predict the housing sale prices for houses in Ames, IA, USA relatively well. The metrics also indicate that the above models generally predict similarly with no major differences in performance**.
 
-### Organization and Professionalism
-
-**Project Organization**
-- Are modules imported correctly (using appropriate aliases)?
-- Are data imported/saved using relative paths?
-- Does the README provide a good executive summary of the project?
-- Is markdown formatting used appropriately to structure notebooks?
-- Are there an appropriate amount of comments to support the code?
-- Are files & directories organized correctly?
-- Are there unnecessary files included?
-- Do files and directories have well-structured, appropriate, consistent names?
-
-**Visualizations**
-- Are sufficient visualizations provided?
-- Do plots accurately demonstrate valid relationships?
-- Are plots labeled properly?
-- Are plots interpreted appropriately?
-- Are plots formatted and scaled appropriately for inclusion in a notebook-based technical report?
-
-**Python Syntax and Control Flow**
-- Is care taken to write human readable code?
-- Is the code syntactically correct (no runtime errors)?
-- Does the code generate desired results (logically correct)?
-- Does the code follows general best practices and style guidelines?
-- Are Pandas functions used appropriately?
-- Are `sklearn` methods used appropriately?
-
-**Presentation**
-- Is the problem statement clearly presented?
-- Does a strong narrative run through the presentation building toward a final conclusion?
-- Are the conclusions/recommendations clearly stated?
-- Is the level of technicality appropriate for the intended audience?
-- Is the student substantially over or under time?
-- Does the student appropriately pace their presentation?
-- Does the student deliver their message with clarity and volume?
-- Are appropriate visualizations generated for the intended audience?
-- Are visualizations necessary and useful for supporting conclusions/explaining findings?
-
-### REMEMBER:
-
-This is a learning environment and you are encouraged to try new things, even if they end up failing. While this rubric outlines what we look for in a _good_ project, it is up to you to go above and beyond to create a _great_ project. **Learn from your failures and you'll be prepared to succeed in the workforce**.
+The predictions of housing sale prices from these models may be very relevant in the real world. For instance, these predictions may be used by home owners, buyers, sellers and realtors to gauge how much a house may be worth given it's characteristics (features). The predictions may also be used by the local government for tax assessment purposes or by financial institutions to determine the loan and mortgage rates. Although the predictions modelled in this project may be localized to the city of Ames, they may be applied to other cities (with caution) to understand the differences, before refining the models for such cities.
