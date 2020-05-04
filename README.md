@@ -17,3 +17,23 @@ In this project, I utilize the following skillsets:
 - Exploratory Data Analysis (EDA) with Pandas
 - Data Visualization with Matplotlib & Seaborn
 - Basic Statistics (Distributions, Hypothesis Testing, etc.)
+
+
+## Project 2: Ames Housing Data Analysis and Modelling
+
+### Problem Statement
+
+Using the information in the Ames Housing Dataset, is it possible to **predict the housing sale prices for houses in Ames, IA, USA (by employing different Machine Learning techniques)**? If yes, **how accurately can these housing sale prices be predicted?**
+
+### Executive Summary
+
+The Ames Housing Dataset containing observations of housing sales in Ames, Iowa, USA between 2006 and 2010 is given. I'll seek to apply different machine learning techniques to predict the sale price of houses based on their features. For ease of organization and understanding, the project has been divided into 3 separate Jupyter notebooks.
+
+In order to predict the housing sale prices, I employ different methods of feature selection and machine learning techniques in this project. Some of the techniques/models employed in this project are:
+- Multiple Linear Regression
+- Regularization (Lasso, Ridge & ElasticNet)
+- Recursive Feature Elimination with Cross-Validation (RFECV)
+- Grid Search with Cross-Validation (GridSearchCV)
+- Sequential Feature Selector
+
+Each of the models built are evaluated using metrics such as R^2 score, Mean Squared Error (MSE) and Root Mean Squared Error (RMSE) to explain how well the models may generalize to new data.
