@@ -21,7 +21,7 @@ I utilize the following methods and libraries to train age classification models
 - *scikit-learn RandomForestClassifier* & Support Vector Classifier *(SVC)* for traditional Machine Learning approach
 - **Convolutional Neural Networks (CNNs)** using *TensorFlow* for Deep Learning approach
 
-The description and walkthrough for the entire project is available as an **[article on Towards Data Science](https://towardsdatascience.com/age-detection-using-facial-images-traditional-machine-learning-vs-deep-learning-2437b2feeab2)**. The **[source code]https://drive.google.com/drive/folders/1Z-yE8YDbf_C8nWmcqpkeSf06a23PvrqJ?usp=sharing) Google Colab notebooks** and the **[datasets](https://drive.google.com/drive/folders/1dZhJNGmdoO1La6MOJRfUYxDZwIa-hXNX?usp=sharing)** for this project are accessible **on Google Drive**.
+The description and walkthrough for the entire project is available as an **[article on Towards Data Science](https://towardsdatascience.com/age-detection-using-facial-images-traditional-machine-learning-vs-deep-learning-2437b2feeab2)**. The **[source code](https://drive.google.com/drive/folders/1Z-yE8YDbf_C8nWmcqpkeSf06a23PvrqJ?usp=sharing) Google Colab notebooks** and the **[datasets](https://drive.google.com/drive/folders/1dZhJNGmdoO1La6MOJRfUYxDZwIa-hXNX?usp=sharing)** for this project are accessible **on Google Drive**.
 
 
 ## Conclusions and Recommendations
