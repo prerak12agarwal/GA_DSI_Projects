@@ -1,14 +1,11 @@
-# Project 4 - West Nile Virus Predictions
-
+# ![](https://ga-dash.s3.amazonaws.com/production/assets/logo-9f88ae6c9c3871690e33280fcf557f33.png) Project 4: West Nile Virus (WNV) Predictions
 
 
 ## Context 
 
+West-Nile-Virus (WNV) is a mosquito-borne disease that has plagued the continental United States since 1999. The vast majority of infected people will develop mild symptoms that will subside over a few days to several weeks (source). About 1 out of 150 infected people develop a serious illness. The sometimes neuroinvasive virus may cause encephalitis and meningitis, which can prove to be fatal. There is currently no vaccine to prevent or medication to treat WNV (source).
 
-West-Nile-Virus(WNV) is a mosquito-borne disease that has plagued the continental United States since 1999. The vast majority of infected people will develop mild symptoms that will subside over a few days to several weeks (source). About 1 out of 150 infected people develop a serious illness. The sometimes neuroinvasive virus may cause encephalitis and meningitis, which can prove to be fatal. There is currently no vaccine to prevent or medication to treat WNV (source).
-
-Outbreaks typically intensify over as little as a couple of weeks; however, human case reports are lagging indicators of risk since case reports occur weeks after the time of infection. Thus, environmental surveillance – monitoring enzootic and epizootic WNV transmission in mosquitoes and birds – forms a timelier index of risk, and is an important cornerstone for implementing effective WNV risk reduction efforts.Research and operational experience shows that increases in WNV infection rates in mosquito populations can provide an indicator of developing outbreak conditions several weeks in advance of increases in human infections. Aggressive and timely efforts to reduce the number of infected adult mosquitoes will optimally impact human WNV case incidence (source)
-
+Outbreaks typically intensify over as little as a couple of weeks; however, human case reports are lagging indicators of risk since case reports occur weeks after the time of infection. Thus, environmental surveillance – monitoring enzootic and epizootic WNV transmission in mosquitoes and birds – forms a timelier index of risk, and is an important cornerstone for implementing effective WNV risk reduction efforts. Research and operational experience shows that increases in WNV infection rates in mosquito populations can provide an indicator of developing outbreak conditions several weeks in advance of increases in human infections. Aggressive and timely efforts to reduce the number of infected adult mosquitoes will optimally impact human WNV case incidence (source)
 
 
 ## Scope
@@ -22,10 +19,8 @@ The modelling techniques and strategies will be presented to biostaticians, epid
 
 ## Problem Statement
 
-
 1. To predict locations with high potential of having mosquitoes carrying West Nile Virus.
 2. Find out factors that contribute to the growth and spread of the virus in mosquitoes.
-
 
 ---
 
@@ -61,7 +56,6 @@ Contains our kaggle attempts
 **5. plot_images**  
 
 Contains all the relevant images that we have in the notebooks
-
 
 
 ## Data Dictionary
@@ -117,9 +111,7 @@ We have also deployed our model so that it can be used by the relevant departmen
 However, the main limitation is that the model was deployed on our local server using a *flask* application. We can look into improving it by deploying it to cloud. We can also improve the frontend interface so that it can provide more useful information and visualizations.
 
 
-
 ## Conclusions and Recommendations
-
 
 We have selected the *RandomForestClassifier* with hyperparameter *class_weight='balanced_subsample'* as our model of choice, with what we deemed was the best balance between *accuracy* and *sensitivity* (due to the nature of our prediction being disease related and the minimisation of *false negatives* are imperative). *RandomForestClassifier* performed the best in these two metrics when compared to *LogisticRegression, GradientBoosting* and *SVC* models. *RandomForestClassifier* also performed relatively well with *SMOTE* as our balancing technique, however comparing the significant increase in *sensitivity*, we felt that a slight decrease in *accuracy* using *class_weight='balanced_subsample'* was justified. Other balancing techniques such as *ADASYN* and *ClusterCentroids* were considered as well. However, *ADASYN* was inferior to our selection and *ClusterCentroids* is an undersampling technique that brought the negative class down to a number that would be detrimental to the model performance.
 
